@@ -4,6 +4,8 @@ namespace rqdq.aoc22 {
 
 class Day02 {
   public const string fileName = "02.txt";
+  const int Win = 3;
+  const int Tie = 2;
 
   public void Solve(ReadOnlySpan<byte> text) {
     int p1 = 0, p2 = 0;
@@ -12,7 +14,7 @@ class Day02 {
       var other = line[0] - (byte)'A' + 1;
       var me = line[2] - (byte)'X' + 1;
       p1 += Score(me, other);
-      p2 += Score(Win(other, me), other); }
+      p2 += Score(Move(other, me), other); }
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }
@@ -30,11 +32,11 @@ class Day02 {
       if (a == 3) return b==2 ? a : b;  // s>p
       throw new Exception("should never reach here"); }
 
-    static int Win(int a, int b) {
-      if (b == 2) return a;
-      if (a == 1) return b==3 ? 2 : 3;
-      if (a == 2) return b==3 ? 3 : 1;
-      if (a == 3) return b==3 ? 1 : 2;
+    static int Move(int a, int wanted) {
+      if (wanted == Tie) return a;
+      if (a == 1) return wanted==Win ? 2 : 3;
+      if (a == 2) return wanted==Win ? 3 : 1;
+      if (a == 3) return wanted==Win ? 1 : 2;
       throw new Exception("should never reach here"); } }
 
 
