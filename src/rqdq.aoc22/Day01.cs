@@ -8,6 +8,9 @@ class Day01 {
 
   public void Solve(ReadOnlySpan<byte> text) {
     PriorityQueue<int, int> elf = new();
+    elf.Enqueue(0,0);
+    elf.Enqueue(0,0);
+    elf.Enqueue(0,0);
     int ax = 0;
     while (!text.IsEmpty) {
       var line = BTU.PopLine(ref text);
@@ -15,11 +18,9 @@ class Day01 {
         Utf8Parser.TryParse(line, out int num, out _);
         ax += num; }
       else {
-        elf.Enqueue(ax, ax);
-        while (elf.Count > 3) elf.Dequeue();
+        elf.EnqueueDequeue(ax, ax);
         ax = 0; }}
-    elf.Enqueue(ax, ax);
-    while (elf.Count > 3) elf.Dequeue();
+    elf.EnqueueDequeue(ax, ax);
 
     var third  = elf.Dequeue();
     var second = elf.Dequeue();
