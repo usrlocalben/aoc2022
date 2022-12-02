@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rqdq.aoc22", "src\rqdq.aoc22\rqdq.aoc22.csproj", "{3DED09C6-CB01-4B36-9E13-6B34F769B106}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DED09C6-CB01-4B36-9E13-6B34F769B106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DED09C6-CB01-4B36-9E13-6B34F769B106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DED09C6-CB01-4B36-9E13-6B34F769B106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DED09C6-CB01-4B36-9E13-6B34F769B106}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6710057F-BFA7-46CF-B707-70DB0AEB68B2}
+	EndGlobalSection
+EndGlobal
