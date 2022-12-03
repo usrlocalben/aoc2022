@@ -1,6 +1,6 @@
 ﻿namespace rqdq.aoc22 {
 
-using Day = Day02;
+using Day = Day03;
 
 class App {
   static int Main(string[] argv) {
