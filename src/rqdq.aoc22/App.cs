@@ -31,25 +31,25 @@ class App {
         SolverFactory(day).Solve(mm.AsSpan()); }}
     return 0; }
 
-    static
-    ISolution SolverFactory(int day) {
-      var type = Type.GetType($"rqdq.aoc22.Day{day:D2}");
-      if (type == null) {
-        throw new Exception($"no factory impl for day {day}"); }
-      return (ISolution)Activator.CreateInstance(type); }
+  static
+  ISolution SolverFactory(int day) {
+    var type = Type.GetType($"rqdq.aoc22.Day{day:D2}");
+    if (type == null) {
+      throw new Exception($"no factory impl for day {day}"); }
+    return (ISolution)Activator.CreateInstance(type); }
 
-    static
-    string RetrieveInput(string token, int year, int day) {
-      var cookieContainer = new CookieContainer();
-      cookieContainer.Add(kAocDomain, new Cookie("session", token));
-      var client = new HttpClient(new HttpClientHandler() {
-        AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-        CookieContainer = cookieContainer });
-      client.BaseAddress = kAocDomain;
-      var response = client.GetAsync($@"{year}/day/{day}/input").Result;
-      response.EnsureSuccessStatusCode();
-      string data = response.Content.ReadAsStringAsync().Result;
-      return data; } }
+  static
+  string RetrieveInput(string token, int year, int day) {
+    var cookieContainer = new CookieContainer();
+    cookieContainer.Add(kAocDomain, new Cookie("session", token));
+    var client = new HttpClient(new HttpClientHandler() {
+      AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+      CookieContainer = cookieContainer });
+    client.BaseAddress = kAocDomain;
+    var response = client.GetAsync($@"{year}/day/{day}/input").Result;
+    response.EnsureSuccessStatusCode();
+    string data = response.Content.ReadAsStringAsync().Result;
+    return data; } }
 
 static
 class L {
