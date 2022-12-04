@@ -6,8 +6,8 @@ class App {
   const string kSessionKey = "RQDQ__AOC__SESSION_KEY";
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
-  const int kDayBegin = 4;
-  const int kDayEnd = kDayBegin + 1;
+  const int kDayBegin = 1;
+  const int kDayEnd = 5;  // kDayBegin + 1;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
