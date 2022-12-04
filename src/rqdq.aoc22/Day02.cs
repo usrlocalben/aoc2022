@@ -2,8 +2,7 @@
 
 namespace rqdq.aoc22 {
 
-class Day02 {
-  public const string fileName = "02.txt";
+class Day02 : ISolution {
   const int Tie = 2, Win = 3;
 
   public void Solve(ReadOnlySpan<byte> text) {

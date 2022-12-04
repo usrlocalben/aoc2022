@@ -3,9 +3,7 @@ using BTU = rqdq.rclt.ByteTextUtil;
 
 namespace rqdq.aoc22 {
 
-class Day03 {
-  public const string fileName = "03.txt";
-
+class Day03 : ISolution {
   public void Solve(ReadOnlySpan<byte> text) {
     int p1 = 0, p2 = 0;
 
@@ -32,10 +30,10 @@ class Day03 {
     Console.WriteLine(p1);
     Console.WriteLine(p2); }
 
-    int Priority(byte ch) {
-      if ((byte)'A' <= ch && ch <= (byte)'Z') {
-        return ch - (byte)'A' + 27; }
-      return ch - (byte)'a' + 1; }}
+  int Priority(byte ch) {
+    if ((byte)'A' <= ch && ch <= (byte)'Z') {
+      return ch - (byte)'A' + 27; }
+    return ch - (byte)'a' + 1; }}
 
 
 }  // close package namespace

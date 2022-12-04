@@ -27,18 +27,15 @@ class App {
       File.WriteAllText(dataPath, data); }
 
     using (var mm = new rcls.FileLoader(dataPath)) {
-      var solver = SolverFactory(kDayNum);
-      solver(mm.AsSpan()); }
+      SolverFactory(kDayNum).Solve(mm.AsSpan()); }
     return 0; }
 
     static
-    Solver SolverFactory(int daynum) {
-      // XXX dedupe using reflection??
-      switch (daynum) {
-      case 1: return text => new Day01().Solve(text);
-      case 2: return text => new Day02().Solve(text);
-      case 3: return text => new Day03().Solve(text); }
-      throw new Exception($"no factory impl for day {daynum}"); }
+    ISolution SolverFactory(int day) {
+      var type = Type.GetType($"rqdq.aoc22.Day{day:D2}");
+      if (type == null) {
+        throw new Exception($"no factory impl for day {day}"); }
+      return (ISolution)Activator.CreateInstance(type); }
 
     static
     string RetrieveInput(string token, int year, int day) {
