@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 5;  // kDayBegin + 1;
+  const int kDayEnd = 6;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
@@ -36,7 +36,10 @@ class App {
     var type = Type.GetType($"rqdq.aoc22.Day{day:D2}");
     if (type == null) {
       throw new Exception($"no factory impl for day {day}"); }
-    return (ISolution)Activator.CreateInstance(type); }
+    if (Activator.CreateInstance(type) is ISolution instance) {
+      return instance; }
+    else {
+      throw new Exception("expected ISolution"); }}
 
   static
   string RetrieveInput(string token, int year, int day) {
