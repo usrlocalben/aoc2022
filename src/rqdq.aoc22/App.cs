@@ -87,6 +87,33 @@ class L {
       return ((byte)x, true); }
     return (a, false); }
 
+  public static
+  void Times(this int many, Action action) {
+    for (int i=0; i<many; ++i) {
+      action(); } }
+
+  public static
+  void Resize<T>(this List<T> list, int size, T element = default(T)) {
+    int count = list.Count;
+
+    if (size < count) {
+      list.RemoveRange(size, count - size); }
+    else if (size > count) {
+      if (size > list.Capacity) {   // Optimization
+        list.Capacity = size; }
+      list.AddRange(Enumerable.Repeat(element, size - count)); } }
+
+  public static
+  void Resize<T>(this List<T> list, int size) where T : new() {
+    int count = list.Count;
+
+    if (size < count) {
+      list.RemoveRange(size, count - size); }
+    else if (size > count) {
+      if (size > list.Capacity) {   // Optimization
+        list.Capacity = size; }
+      for (int n=0; n<size - count; ++n) {
+        list.Add(new T()); } } }
 
   }  // L
 

@@ -5,57 +5,48 @@ namespace rqdq.aoc22 {
 class Day05 : ISolution {
 
   public void Solve(ReadOnlySpan<byte> text) {
-    List<Stack<char>> stack1;
-    List<Stack<char>> stack2;
-    Stack<char> flip;
-
     const int N = 9;
-    const int stride = N * 4;
+    List<Stack<char>> stack1 = new(N);  stack1.Resize(N);
+    List<Stack<char>> stack2 = new(N);  stack2.Resize(N);
+    Stack<char> flip = new();
+
+    // find picture/instrs break (and picture height)
     int height = 0;
     var picture = text;
     for (;; ++height) {
-      var l = BTU.PopLine(ref text);
-      if (l.IsEmpty) break; }
+      if (BTU.PopLine(ref text).IsEmpty) {
+        break; }}
 
-    flip = new();
-    stack1 = new List<Stack<char>>(N);
-    stack2 = new List<Stack<char>>(N);
-    for (int i=0; i<N; ++i) {
-      stack1.Add(new());
-      stack2.Add(new()); }
-
+    // load stacks from picture
+    const int width = N * 4;
     for (int y=height - 1; y>=0; --y) {
-      for (int i=0; i<9; ++i) {
-        var ch = (char)picture[y*stride + i*4+1];
+      for (int i=0; i<N; ++i) {
+        var ch = (char)picture[y*width + i*4+1];
         if (ch != ' ') {
           stack1[i].Push(ch);
           stack2[i].Push(ch); }}}
 
-    while (!text.IsEmpty) {
-      var l = BTU.PopLine(ref text);
-      BTU.PopWord(ref l);                    BTU.ConsumeSpace(ref l);
-      BTU.ConsumeValue(ref l, out int many); BTU.ConsumeSpace(ref l);
-      BTU.PopWord(ref l);                    BTU.ConsumeSpace(ref l);
-      BTU.ConsumeValue(ref l, out int src);  BTU.ConsumeSpace(ref l);
-      BTU.PopWord(ref l);                    BTU.ConsumeSpace(ref l);
-      BTU.ConsumeValue(ref l, out int dst);
+    var t = text;
+    while (!t.IsEmpty) {
+      BTU.PopWord(ref t);                    BTU.ConsumeSpace(ref t);
+      BTU.ConsumeValue(ref t, out int many); BTU.ConsumeSpace(ref t);
+      BTU.PopWord(ref t);                    BTU.ConsumeSpace(ref t);
+      BTU.ConsumeValue(ref t, out int src);  BTU.ConsumeSpace(ref t);
+      BTU.PopWord(ref t);                    BTU.ConsumeSpace(ref t);
+      BTU.ConsumeValue(ref t, out int dst);  BTU.ConsumeSpace(ref t);
+      --src; --dst; // 0+
 
       // p1
-      for (int n=many-1; n>=0; --n) {
-        stack1[dst-1].Push(stack1[src-1].Pop()); }
+      many.Times(() => stack1[dst].Push(stack1[src].Pop()));
 
       // p2
-      for (int n=0; n<many; ++n) {
-        flip.Push(stack2[src-1].Pop()); }
-      for (int n=many-1; n>=0; --n) {
-        stack2[dst-1].Push(flip.Pop()); }}
+      many.Times(() => flip.Push(stack2[src].Pop()));
+      many.Times(() => stack2[dst].Push(flip.Pop())); }
 
-    for (int i=0; i<N; ++i) {
-      Console.Write(stack1[i].Peek()); }
-    Console.WriteLine();
-    for (int i=0; i<N; ++i) {
-      Console.Write(stack2[i].Peek()); }
-    Console.WriteLine(); }}
+    var p1 = stack1.Aggregate("", (ax, it) => ax + it.Peek());
+    var p2 = stack2.Aggregate("", (ax, it) => ax + it.Peek());
+    Console.WriteLine(p1);
+    Console.WriteLine(p2); } }
 
 
 }  // close package namespace
