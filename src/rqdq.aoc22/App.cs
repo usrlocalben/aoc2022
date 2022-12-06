@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 6;
+  const int kDayEnd = 7;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
@@ -28,7 +28,8 @@ class App {
         File.WriteAllText(dataPath, data); }
 
       using (var mm = new rcls.FileLoader(dataPath)) {
-        SolverFactory(day).Solve(mm.AsSpan()); }}
+        SolverFactory(day).Solve(mm.AsSpan()); }
+      Console.WriteLine(); }
     return 0; }
 
   static
