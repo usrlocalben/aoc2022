@@ -81,6 +81,12 @@ class ByteTextUtil {
       text = text[(pos+1)..].TrimStart(SP); }
     return extract; }
 
+  public static
+  ReadOnlySpan<byte> PopWordSp(ref ReadOnlySpan<byte> text) {
+    var tmp = PopWord(ref text);
+    ConsumeSpace(ref text);
+    return tmp; }
+
   /// <summary>
   /// remove leading spaces from a span in-place
   /// </summary>
