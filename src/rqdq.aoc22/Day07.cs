@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.Design.Serialization;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.rclt.ByteTextUtil;
 
 namespace rqdq.aoc22 {
 
@@ -21,21 +18,18 @@ class Day07 : ISolution {
     while (!t.IsEmpty) {
       var token = BTU.PopWordSp(ref t);
       if (token[0] == '$') {
-        // command
         var cmd = BTU.PopWordSp(ref t);
         if (cmd[0] == 'c'/*d*/) {
           Chdir(BTU.Decode(BTU.PopWordSp(ref t))); }
         else /*cmd[0] == 'l's)*/ {
-          /* pass */ }}
+          /* unnecessary */ }}
       else if (token[0] == 'd'/*ir*/) {
-        BTU.PopWordSp(ref t);
+        BTU.PopWordSp(ref t);  // unused
         /* noop */ }
       else {
         // file entry
-        int bytes = stoi(token);
-        BTU.PopWordSp(ref t);
-        for (int walk = _cwd; walk>=0; walk=_node[walk].anc) {
-          _node[walk].size += bytes; }}}
+        BTU.PopWordSp(ref t);  // unused
+        File(size: stoi(token)); }}
        
     var p1 = _node.Select(it => it.size)
                   .Where(it => it < 100000)
@@ -65,6 +59,11 @@ class Day07 : ISolution {
         _node.Add(new INode() { anc = _cwd });
         here.dirs[arg] = _node.Count - 1; }
       _cwd = here.dirs[arg]; }}
+
+  void File(int size) {
+    // files contribute to all ancestor dirs
+    for (int walk = _cwd; walk>=0; walk=_node[walk].anc) {
+      _node[walk].size += size; }}
      
   int stoi(ReadOnlySpan<byte> text) {
     System.Buffers.Text.Utf8Parser.TryParse(text, out int num, out _);
