@@ -24,6 +24,8 @@ struct IVec2 {
   public static bool operator!=(IVec2 lhs, IVec2 rhs) => (lhs.x, lhs.y) != (rhs.x, rhs.y);
 
   public IVec2 Sign() { return new IVec2(Math.Sign(x), Math.Sign(y)); }
+  public IVec2 Abs() { return new IVec2(Math.Abs(x), Math.Abs(y)); }
+  public long HMax() { return Math.Max(x, y); }
 
   public static IVec2 operator -(IVec2 a)              => new(-a.x, -a.y);
   public static IVec2 operator +(IVec2 lhs, IVec2 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y);

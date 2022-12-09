@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 9;
+  const int kDayEnd = 10;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
@@ -54,6 +54,7 @@ class App {
     response.EnsureSuccessStatusCode();
     string data = response.Content.ReadAsStringAsync().Result;
     return data; } }
+
 
 static
 class L {
