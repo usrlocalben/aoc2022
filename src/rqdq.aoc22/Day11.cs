@@ -1,8 +1,5 @@
 ﻿using System.Numerics;
 using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
-using System.Globalization;
-using System.Diagnostics;
 
 namespace rqdq.aoc22 {
 
@@ -15,8 +12,7 @@ class Day11 : ISolution {
     public long Dest(long n) => n % mod == 0 ? dt : df; }
 
   Mono[] mono = new Mono[NN];
-  long[] mload = new long[NN];
-  long p2mod = 1;
+  long[] load = new long[NN];
   List<long>[] inv1 = new List<long>[NN];
   List<long>[] inv2 = new List<long>[NN];
 
@@ -61,7 +57,6 @@ class Day11 : ISolution {
       BTU.PopWordSp(ref t); BTU.PopWordSp(ref t); BTU.PopWordSp(ref t);
       BTU.ConsumeValue(ref t, out int divBy);
       mono[i].mod = divBy;
-      p2mod = L.LCM(p2mod, divBy);
 
       BTU.ConsumeSpace(ref t);
 
@@ -80,31 +75,28 @@ class Day11 : ISolution {
       BTU.ConsumeSpace(ref t); }
 
     // part 1
-    for (int r=0; r<20; ++r) {
+    20.Times(() => {
       for (int m=0; m<NN; ++m) {
         foreach (var it in inv1[m]) {
           var level = mono[m].Eval(it) / 3;
           var dest = mono[m].Dest(level);
           inv1[dest].Add(level); }
-        mload[m] += inv1[m].Count;
-        inv1[m].Clear(); }}
-    var p1 = mload.OrderByDescending(n => n)
-                  .Take(2)
-                  .Aggregate(1L, (ax, it) => ax*it);
+        load[m] += inv1[m].Count;
+        inv1[m].Clear(); }});
+    var p1 = load.OrderBy(n => n).TakeLast(2).Aggregate((ax, it) => ax*it);
 
     // part 2
-    Array.Clear(mload);
-    for (int r=0; r<10000; ++r) {
+    Array.Clear(load);
+    var p2mod = mono.Select(it => it.mod).Aggregate((ax, it) => ax*it);
+    10000.Times(() => {
       for (int m=0; m<NN; ++m) {
         foreach (var it in inv2[m]) {
           var level = mono[m].Eval(it) % p2mod;
           var dest = mono[m].Dest(level);
           inv2[dest].Add(level); }
-        mload[m] += inv2[m].Count;
-        inv2[m].Clear(); }}
-    var p2 = mload.OrderByDescending(n => n)
-                  .Take(2)
-                  .Aggregate(1L, (ax, it) => ax*it);
+        load[m] += inv2[m].Count;
+        inv2[m].Clear(); }});
+    var p2 = load.OrderBy(n => n).TakeLast(2).Aggregate((ax, it) => ax*it);
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }}
