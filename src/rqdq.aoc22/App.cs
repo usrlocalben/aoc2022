@@ -118,7 +118,7 @@ class L {
         list.Add(new T()); } } }
 
   public static
-  rmlv.IVec2 MapDim(ReadOnlySpan<byte> map) {
+  rmlv.IVec2 MapDimSafe(ReadOnlySpan<byte> map) {
       int h = 1;
       int w = rclt.ByteTextUtil.PopLine(ref map).Length;
       while (!map.IsEmpty) {
@@ -127,6 +127,13 @@ class L {
           throw new Exception("saw unexpected width while probing dimensions. first={w} line{h + 1}={lw}"); }
         ++h; }
       return new(w, h); }
+
+  public static
+  rmlv.IVec2 MapDim(ReadOnlySpan<byte> map) {
+      var sizeInBytes = map.Length;
+      int w = rclt.ByteTextUtil.PopLine(ref map).Length;
+      int h = sizeInBytes / (w + 1);
+      return new rmlv.IVec2(w, h); }
 
   public static
   long Pow(long a, long b) {
