@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 12;
+  const int kDayEnd = 13;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
@@ -116,6 +116,17 @@ class L {
         list.Capacity = size; }
       for (int n=0; n<size - count; ++n) {
         list.Add(new T()); } } }
+
+  public static
+  rmlv.IVec2 MapDim(ReadOnlySpan<byte> map) {
+      int h = 1;
+      int w = rclt.ByteTextUtil.PopLine(ref map).Length;
+      while (!map.IsEmpty) {
+        int lw = rclt.ByteTextUtil.PopLine(ref map).Length;
+        if (lw != w) {
+          throw new Exception("saw unexpected width while probing dimensions. first={w} line{h + 1}={lw}"); }
+        ++h; }
+      return new(w, h); }
 
   public static
   long Pow(long a, long b) {
