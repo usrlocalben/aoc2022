@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.rclt.ByteTextUtil;
 
 namespace rqdq.aoc22 {
 

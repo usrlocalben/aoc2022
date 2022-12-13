@@ -12,7 +12,7 @@ class Day01 : ISolution {
     while (!text.IsEmpty) {
       var line = BTU.PopLine(ref text);
       if (!line.IsEmpty) {
-        ax += stoi(line); }
+        ax += L.stoi(line); }
       else {
         elf.EnqueueDequeue(ax, ax);
         ax = 0; }}
@@ -23,11 +23,7 @@ class Day01 : ISolution {
     var first  = elf.Dequeue();
 
     Console.WriteLine(first);
-    Console.WriteLine(first + second + third); }
-
-  int stoi(ReadOnlySpan<byte> text) {
-    System.Buffers.Text.Utf8Parser.TryParse(text, out int num, out _);
-    return num; }}
+    Console.WriteLine(first + second + third); }}
 
 
 }  // close package namespace

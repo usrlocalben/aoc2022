@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 13;
+  const int kDayEnd = 14;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
@@ -134,6 +134,29 @@ class L {
       int w = rclt.ByteTextUtil.PopLine(ref map).Length;
       int h = sizeInBytes / (w + 1);
       return new rmlv.IVec2(w, h); }
+
+  public static
+  int stoi(ReadOnlySpan<byte> text) {
+    System.Buffers.Text.Utf8Parser.TryParse(text, out int num, out _);
+    return num; }
+
+  public static
+  IEnumerable<Tuple<int, int>> Split(string text) {
+    if (text.Length > 0) {
+      int level=0, j=0, k;
+      while (true) {
+        bool found = false;
+        for (k=j; k<text.Length; ++k) {
+               if (text[k] == '[') { ++level; }
+          else if (text[k] == ']') { --level; }
+          else if (text[k] == ',' && level == 0) {
+            yield return new Tuple<int, int>(j, k);
+            j = k + 1;
+            found = true;
+            break; }}
+        if (!found) {
+          break; }}
+      yield return new Tuple<int, int>(j, k); } }
 
   public static
   long Pow(long a, long b) {

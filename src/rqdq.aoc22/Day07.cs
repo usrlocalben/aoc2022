@@ -29,7 +29,7 @@ class Day07 : ISolution {
       else {
         // file entry
         BTU.PopWordSp(ref t);  // unused
-        File(size: stoi(token)); }}
+        File(size: L.stoi(token)); }}
        
     var p1 = _node.Select(it => it.size)
                   .Where(it => it < 100000)
@@ -63,11 +63,7 @@ class Day07 : ISolution {
   void File(int size) {
     // files contribute to all ancestor dirs
     for (int walk = _cwd; walk>=0; walk=_node[walk].anc) {
-      _node[walk].size += size; }}
-     
-  int stoi(ReadOnlySpan<byte> text) {
-    System.Buffers.Text.Utf8Parser.TryParse(text, out int num, out _);
-    return num; }}
+      _node[walk].size += size; }}}
 
 
 }  // close package namespace
