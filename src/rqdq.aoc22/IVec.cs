@@ -20,6 +20,9 @@ struct IVec2 {
   public override
   bool Equals(Object? other) => (other is IVec2 inst) ? inst == this : false;
 
+  public override
+  string ToString() => $"({x},{y})";
+
   public static bool operator==(IVec2 lhs, IVec2 rhs) => (lhs.x, lhs.y) == (rhs.x, rhs.y);
   public static bool operator!=(IVec2 lhs, IVec2 rhs) => (lhs.x, lhs.y) != (rhs.x, rhs.y);
   public static bool operator<(IVec2 lhs, IVec2 rhs) => lhs.x<rhs.x && lhs.y<rhs.y;
@@ -30,6 +33,8 @@ struct IVec2 {
   public IVec2 Sign() { return new IVec2(Math.Sign(x), Math.Sign(y)); }
   public IVec2 Abs() { return new IVec2(Math.Abs(x), Math.Abs(y)); }
   public long HMax() { return Math.Max(x, y); }
+  public IVec2 Min(IVec2 a) => new(Math.Min(a.x,x), Math.Min(a.y,y));
+  public IVec2 Max(IVec2 a) => new(Math.Max(a.x,x), Math.Max(a.y,y));
 
   public static IVec2 operator -(IVec2 a)              => new(-a.x, -a.y);
   public static IVec2 operator +(IVec2 lhs, IVec2 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y);
