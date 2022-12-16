@@ -35,6 +35,7 @@ struct IVec2 {
   public long HMax() { return Math.Max(x, y); }
   public IVec2 Min(IVec2 a) => new(Math.Min(a.x,x), Math.Min(a.y,y));
   public IVec2 Max(IVec2 a) => new(Math.Max(a.x,x), Math.Max(a.y,y));
+  public long MDist(IVec2 a) => Math.Abs(a.x-x)+Math.Abs(a.y-y);
 
   public static IVec2 operator -(IVec2 a)              => new(-a.x, -a.y);
   public static IVec2 operator +(IVec2 lhs, IVec2 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y);
