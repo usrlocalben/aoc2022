@@ -65,11 +65,16 @@ struct IVec3 {
   public static bool operator==(IVec3 l, IVec3 r) => (l.x, l.y, l.z) == (r.x, r.y, r.z);
   public static bool operator!=(IVec3 l, IVec3 r) => (l.x, l.y, l.z) != (r.x, r.y, r.z);
 
+  public static bool operator< (IVec3 lhs, IVec3 rhs) => lhs.x< rhs.x && lhs.y< rhs.y && lhs.z< rhs.z;
+  public static bool operator> (IVec3 lhs, IVec3 rhs) => lhs.x> rhs.x && lhs.y> rhs.y && lhs.z> rhs.z;
+  public static bool operator<=(IVec3 lhs, IVec3 rhs) => lhs.x<=rhs.x && lhs.y<=rhs.y && lhs.z<=rhs.z;
+  public static bool operator>=(IVec3 lhs, IVec3 rhs) => lhs.x>=rhs.x && lhs.y>=rhs.y && lhs.z>=rhs.z;
+
   public static IVec3 operator-(IVec3 rhs) => new(-rhs.x, -rhs.y, -rhs.z);
-  public static IVec3 operator+(IVec3 lhs, IVec3 rhs) => new(lhs.x + rhs.x, lhs.x + rhs.y, lhs.z + rhs.z);
-  public static IVec3 operator-(IVec3 lhs, IVec3 rhs) => new(lhs.x - rhs.x, lhs.x - rhs.y, lhs.z - rhs.z);
-  public static IVec3 operator*(IVec3 lhs, IVec3 rhs) => new(lhs.x * rhs.x, lhs.x * rhs.y, lhs.z * rhs.z);
-  public static IVec3 operator/(IVec3 lhs, IVec3 rhs) => new(lhs.x / rhs.x, lhs.x / rhs.y, lhs.z / rhs.z);
+  public static IVec3 operator+(IVec3 lhs, IVec3 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+  public static IVec3 operator-(IVec3 lhs, IVec3 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
+  public static IVec3 operator*(IVec3 lhs, IVec3 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
+  public static IVec3 operator/(IVec3 lhs, IVec3 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
 
   public IVec2 XY() => new(x, y); }
 

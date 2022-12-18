@@ -7,7 +7,7 @@ class App {
   static readonly Uri kAocDomain = new("https://adventofcode.com");
   const int kYearNum = 2022;
   const int kDayBegin = 1;
-  const int kDayEnd = 18;
+  const int kDayEnd = 19;
 
   static int Main(string[] argv) {
     var appDataDir = Environment.GetEnvironmentVariable("APPDATA");
