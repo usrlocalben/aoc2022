@@ -6,13 +6,13 @@ class Day17 : ISolution {
     long p1 = -1, p2 = -1;
 
     // sprites & field are upside down!, +y goes "up"
-    string b0 = "####";
     string o0 = "0000";
+    string b0 = "####";
 
+    string o1 = "101";
     string b1 = ".#." +
                 "###" +
                 ".#.";
-    string o1 = "101";
 
     string o2 = "000";
     string b2 = "###" +
@@ -161,13 +161,8 @@ class Day17 : ISolution {
             long target = 1000000000000;
             var neededRocks = target - rocks;
             var neededCycles = neededRocks / cycleLen;
-            var rag = neededRocks % cycleLen;
-
-            int ragLevels = 0;
-            for (int ci=cycleBegin - 1; ci<cycleBegin + rag; ++ci) {
-              ragLevels += deltas[ci]; }
-
-            p2 = (level - levelChange) + neededCycles * cycleLevelDelta + ragLevels; }
+            if (neededRocks % cycleLen == 0) {
+              p2 = (level - 0) + neededCycles * cycleLevelDelta; }}
           else {
             seen[key] = rocks; } } } } // end input
 

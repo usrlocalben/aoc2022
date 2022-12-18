@@ -1,7 +1,5 @@
 ﻿using BTU = rqdq.rclt.ByteTextUtil;
 using rqdq.rmlv;
-using System.Data.SqlTypes;
-using System.ComponentModel;
 
 namespace rqdq.aoc22 {
 
