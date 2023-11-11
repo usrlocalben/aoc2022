@@ -1,6 +1,4 @@
-﻿using rqdq.rmlv;
-
-namespace rqdq.aoc22 {
+﻿namespace rqdq.aoc22;
 
 class Day12 : ISolution {
   public void Solve(ReadOnlySpan<byte> map) {
@@ -10,7 +8,7 @@ class Day12 : ISolution {
     List<IVec2> aaa = new();
     var start = new IVec2(-1, -1);
     var end = new IVec2(-1, -1);
-    for (int i=0; i<map.Length; ++i) {
+    for (var i=0; i<map.Length; ++i) {
       if (map[i] == (byte)'S') start = new IVec2(i%stride, i/stride);
       if (map[i] == (byte)'E') end = new IVec2(i%stride, i/stride);
       if (map[i] == (byte)'a' || map[i] == (byte)'S') {
@@ -31,11 +29,11 @@ class Day12 : ISolution {
         p1 = dist;
         break; }
 
-      int height = Height(map[(int)(here.y * stride + here.x)]);
+      var height = Height(map[(int)(here.y * stride + here.x)]);
       foreach (var dir in L.NESW) {
         var nextCoord = here + dir;
         if (new IVec2(0) <= nextCoord && nextCoord < DIM) {
-          int nextHeight = Height(map[(int)(nextCoord.y * stride + nextCoord.x)]);
+          var nextHeight = Height(map[(int)(nextCoord.y * stride + nextCoord.x)]);
           if (nextHeight <= height + 1) {
             queue.Enqueue(new (nextCoord, dist + 1)); }}}}
 
@@ -47,7 +45,7 @@ class Day12 : ISolution {
       if (visited.Contains(here)) continue;
       visited.Add(here);
 
-      int height = Height(map[(int)(here.y * stride + here.x)]);
+      var height = Height(map[(int)(here.y * stride + here.x)]);
       if (height == 1) {
         p2 = dist;
         break; }
@@ -55,17 +53,15 @@ class Day12 : ISolution {
       foreach (var dir in L.NESW) {
         var nextCoord = here + dir;
         if (new IVec2(0) <= nextCoord && nextCoord < DIM) {
-          int nextHeight = Height(map[(int)(nextCoord.y * stride + nextCoord.x)]);
+          var nextHeight = Height(map[(int)(nextCoord.y * stride + nextCoord.x)]);
           if (nextHeight >= height - 1) {
             queue.Enqueue(new (nextCoord, dist + 1)); }}}}
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }
 
-    int Height(byte b) {
+  static
+  int Height(byte b) {
       if (b == (byte)'E') return 'z' - 'a';
       if (b == (byte)'S') return 0;
       return b - (byte)'a'; }}
-
-
-}  // close package namespace

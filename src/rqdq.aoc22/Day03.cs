@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using BTU = rqdq.rclt.ByteTextUtil;
+using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day03 : ISolution {
   public void Solve(ReadOnlySpan<byte> text) {
@@ -34,6 +34,3 @@ class Day03 : ISolution {
     if ((byte)'A' <= ch && ch <= (byte)'Z') {
       return ch - (byte)'A' + 27; }
     return ch - (byte)'a' + 1; }}
-
-
-}  // close package namespace

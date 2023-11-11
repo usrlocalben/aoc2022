@@ -1,4 +1,4 @@
-﻿namespace rqdq.aoc22 {
+﻿namespace rqdq.aoc22;
 
 class Day17 : ISolution {
 
@@ -168,6 +168,3 @@ class Day17 : ISolution {
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }}
-
-
-}  // close package namespace

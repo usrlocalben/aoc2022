@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day06 : ISolution {
 
@@ -11,7 +11,7 @@ class Day06 : ISolution {
     var buf1 = new uint[N1];
     var buf2 = new uint[N2];
 
-    for (int i=0; i<text.Length && (p1==0||p2==0); ++i) {
+    for (var i=0; i<text.Length && (p1==0||p2==0); ++i) {
       buf1[i % N1] = buf2[i % N2] = alphaBit(text[i]);
       var bits1 = buf1.Aggregate(0U, (ax, it) => ax|it);
       var bits2 = buf2.Aggregate(0U, (ax, it) => ax|it);
@@ -24,6 +24,3 @@ class Day06 : ISolution {
     Console.WriteLine(p2); }
 
   uint alphaBit(byte ch) => 1U << (ch - 'a'); }
-
-
-}  // close package namespace

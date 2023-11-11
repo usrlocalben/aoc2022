@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day04 : ISolution {
   public void Solve(ReadOnlySpan<byte> text) {
@@ -18,6 +18,3 @@ class Day04 : ISolution {
 
   bool Outside(int a, int b, int x, int y) => y < a || x > b;
   bool Contains(int a, int b, int x, int y) => a <= x && y <= b; }
-
-
-}  // close package namespace

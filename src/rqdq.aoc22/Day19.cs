@@ -1,7 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day19 : ISolution {
   byte[,,] BP;
@@ -146,6 +145,3 @@ class Day19 : ISolution {
         best = Math.Max(best,amt); }
 
     return _memo[key] = best; }}
-
-
-}  // close package namespace

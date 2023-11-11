@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day05 : ISolution {
 
@@ -47,6 +47,3 @@ class Day05 : ISolution {
     var p2 = stack2.Aggregate("", (ax, it) => ax + it.Peek());
     Console.WriteLine(p1);
     Console.WriteLine(p2); } }
-
-
-}  // close package namespace

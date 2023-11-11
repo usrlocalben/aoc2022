@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day07 : ISolution {
 
@@ -64,6 +64,3 @@ class Day07 : ISolution {
     // files contribute to all ancestor dirs
     for (int walk = _cwd; walk>=0; walk=_node[walk].anc) {
       _node[walk].size += size; }}}
-
-
-}  // close package namespace

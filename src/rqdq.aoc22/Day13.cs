@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day13 : ISolution {
   public void Solve(ReadOnlySpan<byte> t) {
@@ -8,8 +8,8 @@ class Day13 : ISolution {
     const string div6 = "[[6]]";
     List<string> buf = new(500) { div2, div6 };
 
-    int p1 = 0;
-    for (int n = 1; !t.IsEmpty; ++n) {
+    var p1 = 0;
+    for (var n = 1; !t.IsEmpty; ++n) {
       var l = BTU.Decode(BTU.PopLine(ref t));
       var r = BTU.Decode(BTU.PopLine(ref t));
       BTU.ConsumeSpace(ref t);
@@ -50,6 +50,3 @@ class Day13 : ISolution {
       if (res == -1 || res == 1) {
         return res; }}
     return 0; }}
-
-
-}  // close package namespace

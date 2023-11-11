@@ -1,7 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day15 : ISolution {
   const int oo = 0x3f3f3f3f;
@@ -105,6 +104,3 @@ p1 += bb - aa - hits.Count;}
 found:
     Console.WriteLine(p1);
     Console.WriteLine($"{p2.x*4000000 +p2.y}"); }}
-
-
-}  // close package namespace

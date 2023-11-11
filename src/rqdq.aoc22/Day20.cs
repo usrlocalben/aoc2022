@@ -1,8 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
-
+namespace rqdq.aoc22;
 
 class Day20 : ISolution {
   const  long magic = 811589153;
@@ -84,6 +82,3 @@ class Day20 : ISolution {
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }}
-
-
-}  // close package namespace

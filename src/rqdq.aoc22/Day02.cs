@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day02 : ISolution {
   const int Tie = 2, Win = 3;
@@ -34,6 +34,3 @@ class Day02 : ISolution {
     if (them == 1) return wanted==Win ? 2 : 3;
     if (them == 2) return wanted==Win ? 3 : 1;
     /* them== 3 */ return wanted==Win ? 1 : 2; } }
-
-
-}  // close package namespace

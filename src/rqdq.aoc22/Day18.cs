@@ -1,7 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day18 : ISolution {
   const int N = 20;
@@ -90,7 +89,3 @@ class Day18 : ISolution {
       return 1; }
 
     }//class
-
-
-
-}  // close package namespace

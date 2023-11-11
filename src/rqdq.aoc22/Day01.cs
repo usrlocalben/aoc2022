@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day01 : ISolution {
   public void Solve(ReadOnlySpan<byte> text) {
@@ -8,7 +8,7 @@ class Day01 : ISolution {
     elf.Enqueue(0,0);
     elf.Enqueue(0,0);
     elf.Enqueue(0,0);
-    int ax = 0;
+    var ax = 0;
     while (!text.IsEmpty) {
       var line = BTU.PopLine(ref text);
       if (!line.IsEmpty) {
@@ -24,6 +24,3 @@ class Day01 : ISolution {
 
     Console.WriteLine(first);
     Console.WriteLine(first + second + third); }}
-
-
-}  // close package namespace

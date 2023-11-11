@@ -14,10 +14,9 @@ uint e = 0111110001110100010001111b
 uint c = 0011010011000100010010110b
 uint l = 0100010001000100010001111b
 */
-using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
+using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day10 : ISolution {
 
@@ -41,7 +40,7 @@ class Day10 : ISolution {
         pgm.Add(new () { op = opcode.noop, data = 0 }); }}
 
     const int W = 40, H = 6;
-    char[] frame = new char[H*W];
+    var frame = new char[H*W];
 
     const int p1period = 40;
     int p1hit = 20, p1 = 0;
@@ -65,10 +64,7 @@ class Day10 : ISolution {
       frame[cycle] = (rx-1) <= raster && raster <=(rx+1) ? '#' : ' '; }
 
     Console.WriteLine(p1);
-    for (int y=0; y<H; ++y) {
-      for (int x=0; x<W; ++x) {
+    for (var y=0; y<H; ++y) {
+      for (var x=0; x<W; ++x) {
         Console.Write(frame[y*W+x]); }
       Console.WriteLine(); } } }
-
-
-}  // close package namespace

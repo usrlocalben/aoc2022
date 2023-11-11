@@ -1,9 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
-using rqdq.rmlv;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.AccessControl;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 interface IExpr {
   string Name();
@@ -112,6 +109,3 @@ class Day21 : ISolution {
 
     Console.WriteLine(p1);
     Console.WriteLine(p2); }}
-
-
-}  // close package namespace

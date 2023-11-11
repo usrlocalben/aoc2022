@@ -1,6 +1,6 @@
-﻿using BTU = rqdq.rclt.ByteTextUtil;
+﻿using BTU = rqdq.aoc22.ByteTextUtil;
 
-namespace rqdq.aoc22 {
+namespace rqdq.aoc22;
 
 class Day16 : ISolution {
   // given graph (rooms)
@@ -147,6 +147,3 @@ class Day16 : ISolution {
         if (amt > best) {
           best = amt; }}}
     return _memo[key] = (short)(here + best); }}
-
-
-}  // close package namespace

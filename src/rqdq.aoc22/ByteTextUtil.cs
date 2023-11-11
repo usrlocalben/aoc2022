@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace rqdq.rclt {
+namespace rqdq.aoc22;
 
 /// <summary>
 /// utility methods for text-parsing over a span in-place (i.e.
@@ -13,14 +13,14 @@ public static
 class ByteTextUtil {
 
   const byte NL = (byte)'\n';  // new-line char as byte
-  const byte CR = (byte)'\r';  // carrage-return as byte (DOS format)
+  const byte CR = (byte)'\r';  // carriage-return as byte (DOS format)
   const byte SP = (byte)' ';   // space char as byte
   const byte TAB= (byte)'\t';   // space char as byte
 
   /// <summary>
   /// split a span at the first newline, and "pop" it by advancing
   /// the begin pos of the input span, and returning the line. if
-  /// a carrage-return preceeds the newline, it is removed. if no
+  /// a carriage-return precedes the newline, it is removed. if no
   /// new-line is found, then the entire input is returned and the
   /// input span is cleared (i.e. it is the last line)
   /// </summary>
@@ -33,7 +33,7 @@ class ByteTextUtil {
   /// <summary>
   /// split a span at the first newline, and "pop" it by advancing
   /// the begin pos of the input span, and returning the line. if
-  /// a carrage-return preceeds the newline, it is removed. if no
+  /// a carriage-return precedes the newline, it is removed. if no
   /// new-line is found, then the entire input is returned and the
   /// input span is cleared (i.e. it is the last line)
   /// </summary>
@@ -63,8 +63,8 @@ class ByteTextUtil {
   public static
   ReadOnlySpan<byte> PopWord(ref ReadOnlySpan<byte> text) {
 
-    int pos = -1;
-    for (int i=0; i<text.Length; ++i) {
+    var pos = -1;
+    for (var i=0; i<text.Length; ++i) {
       if (text[i]==SP || text[i]==TAB || text[i]==CR || text[i]==NL) {
         pos = i;
         break; }}
@@ -115,19 +115,19 @@ class ByteTextUtil {
 
   public static
   bool ConsumeValue(ref ReadOnlySpan<byte> text, out float value) {
-    bool good = Utf8Parser.TryParse(text, out value, out int taken);
+    var good = Utf8Parser.TryParse(text, out value, out var taken);
     if (good) {
       text = text[taken..]; }
     return good; }
 
   public static
   bool ConsumeValue(ref ReadOnlySpan<byte> text, out int value) {
-    bool good = Utf8Parser.TryParse(text, out value, out int taken);
+    var good = Utf8Parser.TryParse(text, out value, out var taken);
     if (good) {
       text = text[taken..]; }
     return good; }
 
-  public unsafe static
+  public static unsafe
   string Decode(in ReadOnlySpan<byte> text) {
     fixed (byte* begin = &MemoryMarshal.GetReference(text)) {
       var lengthInCodepoints = Encoding.UTF8.GetCharCount(begin, text.Length);
@@ -145,6 +145,3 @@ class ByteTextUtil {
     if (text.IsEmpty) return false;
     text = text[1..];
     return true; }}
-
-
-}  // close package namespace
